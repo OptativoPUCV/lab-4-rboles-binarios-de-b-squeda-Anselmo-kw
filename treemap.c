@@ -175,13 +175,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         //TreeNode * hijoDer = minimum(node->right);
         TreeNode * hijoDer = node->right;
         hijoDer = minimum(node);
-        free(node->pair->key);
-        free(node->pair->value);        
+        //free(node->pair->key);
+        //free(node->pair->value);        
 
-        node->pair->key = hijoDer->pair->key;
-        node->pair->value = hijoDer->pair->value;
+        //node->pair->key = hijoDer->pair->key;
+        //node->pair->value = hijoDer->pair->value;
 
-        removeNode(tree, hijoDer);
+        //removeNode(tree, hijoDer);
     }
 
 }
