@@ -91,12 +91,32 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
-    TreeNode * buscar = firstTreeMap(tree);
-    if(buscar == NULL) return NULL;
-    while (buscar != NULL)
+    TreeNode * aux = tree->root; //siempre se empieza por la raiz verdad 
+    if(aux == NULL) return NULL;
+    while (aux != NULL)
     {   
-        //Pregunto si es igual
-        if(buscar->pair->key == key) 
+        //Usar la funcion de lower_than?// ta rara jnajsa
+        // key < aux
+        if(tree->lower_than(key, aux->pair->key))
+        {
+            aux = aux->left; //porque mi aux es mayor
+        }
+
+        // aux < key
+        if(tree->lower_than(aux->pair->key, key))
+        {
+            aux = aux->right;//Aux en este caso es menor que la clave
+        }
+
+        //En caso contrario son iguales
+        else
+        {   
+            //Importante actualizar el current
+            tree->current = aux;
+            return aux->pair; // y retornamos el pair
+        }
+
+        /*if(buscar->pair->key == key) 
         {   
             tree->current = buscar->pair;
             return buscar->pair;
@@ -108,7 +128,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
         if(buscar->pair->key < key)
         {
             buscar->right = nextTreeMap(tree);
-        }
+        }*/
     }
     
     return NULL;
