@@ -168,8 +168,8 @@ Reemplace los datos (key,value) de *node* con los del nodo "minimum". Elimine el
 minimum (para hacerlo puede usar la misma función *removeNode*). */
     TreeNode * hijoDer = node->right;
 
-    /*hijoDer = minimum(node);
-    node->pair->key = hijoDer->pair->key;
+    hijoDer = minimum(node);
+    /*node->pair->key = hijoDer->pair->key;
     node->pair->value = hijoDer->pair->value;*/
 
     /*
