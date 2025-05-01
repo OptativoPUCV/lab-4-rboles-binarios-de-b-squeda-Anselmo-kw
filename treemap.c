@@ -87,12 +87,13 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
             aux = aux->left; //me muevo a la izquierda
         }
         //Si aux < key
-        if(tree->lower_than(aux->pair->key, key)){
-            aux = aux->right; //me muevo a la derecha
-        }
-
-        else{//si son iguales psss no c hace nada
-            return;
+        else{
+            if(tree->lower_than(aux->pair->key, key)){
+                aux = aux->right; //me muevo a la derecha
+            }
+            else{//si son iguales psss no c hace nada
+                return;
+            }
         }
 
     }
