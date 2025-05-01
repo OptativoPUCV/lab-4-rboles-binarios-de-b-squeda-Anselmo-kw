@@ -128,9 +128,8 @@ TreeNode * minimum(TreeNode * x){//es sub raiz, osea no es la raiz
 
 
 void removeNode(TreeMap * tree, TreeNode* node) {
-    TreeNode * aux = tree->root;
 
-    //Nodo sin hijos 
+    // Nodo sin hijos //
     if(node->left == NULL && node->right == NULL){
         if(node->parent->left == NULL) //Signfica que que padre está a la derecha
         {
@@ -141,6 +140,32 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         }
         return;
     }
+
+    // Nodo con un hijo //
+    if(node->left == NULL || node->right == NULL) //Sino tiene la izquierda, tiene a la derecha
+    {   
+        TreeNode * hijo = NULL;//node->right;
+        TreeNode * padre = NULL;
+        
+        if (node->left == NULL)
+            hijo = node->right;
+        else
+            hijo = node->left;
+        
+        //Vemos donde está el padre
+        if(node->parent->left == NULL) {
+            padre = node->parent->right;
+            padre->left = hijo;
+            hijo->parent = padre;
+        }
+        else{
+            padre = node->parent->left;
+            padre->right = hijo;
+            hijo->parent = padre;
+        }
+
+    }
+
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
