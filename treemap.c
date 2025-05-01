@@ -160,8 +160,19 @@ void removeNode(TreeMap * tree, TreeNode* node) {
             node->parent->right = hijo;
             hijo->parent = node->parent;
         }
-
     }
+
+    // Nodo con dos hijos //
+/*Descienda al hijo derecho y obtenga el menor nodo del subárbol (con la función minimum). 
+Reemplace los datos (key,value) de *node* con los del nodo "minimum". Elimine el nodo 
+minimum (para hacerlo puede usar la misma función *removeNode*). */
+    TreeNode * hijoDer = NULL;
+
+    hijoDer = minimum(node);
+    node->pair->key = hijoDer->pair->key;
+    node->pair->value = hijoDer->pair->value;
+
+    removeNode(tree, hijoDer);
 
 }
 
