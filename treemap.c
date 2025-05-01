@@ -96,6 +96,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     while (aux != NULL)
     {   
         //Usar la funcion de lower_than?// ta rara jnajsa
+        /* lower_than (key, cosa)
+        si key < cosa, retorna 1, si no, retorna 0;
+        */
         // key < aux
         if(tree->lower_than(key, aux->pair->key))
         {
@@ -116,19 +119,6 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
             return aux->pair; // y retornamos el pair
         }
 
-        /*if(buscar->pair->key == key) 
-        {   
-            tree->current = buscar->pair;
-            return buscar->pair;
-        }
-        if(buscar->pair->key > key)
-        {
-            buscar->left = nextTreeMap(tree);
-        }
-        if(buscar->pair->key < key)
-        {
-            buscar->right = nextTreeMap(tree);
-        }*/
     }
     
     return NULL;
