@@ -172,7 +172,7 @@ minimum (para hacerlo puede usar la misma función *removeNode*). */
     node->pair->key = hijoDer->pair->key;
     node->pair->value = hijoDer->pair->value;*/
 
-    removeNode(tree, hijoDer);
+    
     if(node->left != NULL && node->right != NULL)
     {
         TreeNode * hijoDer = minimum(node->right);
