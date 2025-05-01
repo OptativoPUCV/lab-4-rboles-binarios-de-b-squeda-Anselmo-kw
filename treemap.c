@@ -131,7 +131,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     // Nodo sin hijos //
     if(node->left == NULL && node->right == NULL){
-        if(node->parent->left == node) //Signfica que que padre está a la derecha
+        if(node->parent->left == NULL) //Signfica que que padre está a la derecha
         {
             node->parent->right = NULL;
         }
@@ -142,44 +142,50 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     }
 
     // Nodo con un hijo //
-    else{
-        
-        if(node->left == NULL || node->right == NULL) //Sino tiene la izquierda, tiene a la derecha
-        {   
-            TreeNode * hijo = NULL;//node->right;
+    if(node->left == NULL || node->right == NULL) //Sino tiene la izquierda, tiene a la derecha
+    {   
+        TreeNode * hijo = NULL;//node->right;
 
-            if (node->left == NULL)
-                hijo = node->right;
-            else
-                hijo = node->left;
-            
-            //Vemos donde está el padre
-            if(node->parent->left == node) {
-                node->parent->left = hijo;
-            }
-            else{
-                node->parent->right = hijo;
-            }
+        if (node->left == NULL)
+            hijo = node->right;
+        else
+            hijo = node->left;
+        
+        //Vemos donde está el padre
+        if(node->parent->left == node) {
+            node->parent->left = hijo;
             hijo->parent = node->parent;
         }
-        
-        /*
         else{
-        // Nodo con dos hijos //
-        if(node->left != NULL && node->right != NULL)
-        {
-            TreeNode * hijoDer = minimum(node->right);
-
-            free(node->pair->key);
-            free(node->pair->value);        
-
-            node->pair->key = hijoDer->pair->key;
-            node->pair->value = hijoDer->pair->value;
-
-            removeNode(tree, hijoDer);
+            node->parent->right = hijo;
+            hijo->parent = node->parent;
         }
-        }*/
     }
+
+    // Nodo con dos hijos //
+/*Descienda al hijo derecho y obtenga el menor nodo del subárbol (con la función minimum). 
+Reemplace los datos (key,value) de *node* con los del nodo "minimum". Elimine el nodo 
+minimum (para hacerlo puede usar la misma función *removeNode*). */
+    TreeNode * hijoDer = minimum(node->right);
+
+    /*hijoDer = minimum(node);
+    node->pair->key = hijoDer->pair->key;
+    node->pair->value = hijoDer->pair->value;*/
+
+    removeNode(tree, hijoDer);
+    if(node->left != NULL && node->right != NULL)
+    {
+        TreeNode * hijoDer = minimum(node->right);
+
+        free(node->pair->key);
+        free(node->pair->value);        
+
+        node->pair->key = hijoDer->pair->key;
+        node->pair->value = hijoDer->pair->value;
+
+        removeNode(tree, hijoDer);
+    }
+
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
