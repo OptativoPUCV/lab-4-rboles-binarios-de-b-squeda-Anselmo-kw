@@ -109,6 +109,8 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         newNodo->parent = parent;
     }
 
+    //Actualizar el curret
+    tree->current = newNodo;
 }
 
 TreeNode * minimum(TreeNode * x){
