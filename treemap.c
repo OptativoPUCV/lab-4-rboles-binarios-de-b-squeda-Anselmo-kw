@@ -174,7 +174,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     {
         //TreeNode * hijoDer = minimum(node->right);
         TreeNode * hijoDer = node->right;
-        hijoDer = minimum(node);      
+        hijoDer = minimum(hijoDer);      
 
         node->pair->key = hijoDer->pair->key;
         node->pair->value = hijoDer->pair->value;
