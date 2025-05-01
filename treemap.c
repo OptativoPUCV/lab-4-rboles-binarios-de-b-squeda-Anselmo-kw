@@ -67,6 +67,7 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     TreeNode * newNodo = createTreeNode(key, value);
     TreeNode * aux = tree->root; //Siempre empezamos por la raiz
+    TreeNode * parent = NULL; // al parecer sirve para en un rato
 
     //Si root es null, significa que es el primero
     if(aux == NULL){
@@ -75,8 +76,12 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     }
 
     //Si no, hay que buscar donde insertarlo
+    
     while (aux != NULL)
     {   
+        //Como aux llega hasta NULL, no me sirve para hacer los enlace, entonces ocupo 
+        parent = aux; //parent para quedarme con el ultimo valor de aux antes de ser nulo
+
         //Si key < aux
         if(tree->lower_than(key, aux->pair->key)){
             aux = aux->left; //me muevo a la izquierda
@@ -94,15 +99,14 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
     //Ahora enlazamos //pero devo ver donde insertarlo
     //Si key < aux
-    if(tree->lower_than(key, aux->pair->key)){
-        aux->left = newNodo;
-        newNodo->parent = aux;
+    if(tree->lower_than(key, parent->pair->key)){
+        parent->left = newNodo;
+        newNodo->parent = parent;
     }
     else{
-        aux->right = newNodo;
-        newNodo->parent = aux;
+        parent->right = newNodo;
+        newNodo->parent = parent;
     }
-
 
 }
 
