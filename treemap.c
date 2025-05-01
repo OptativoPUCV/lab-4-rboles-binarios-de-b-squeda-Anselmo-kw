@@ -179,7 +179,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         node->pair->key = hijoDer->pair->key;
         node->pair->value = hijoDer->pair->value;
 
-        removeNode(tree, &hijoDer);
+        removeNode(tree, hijoDer);
     }
 
 }
