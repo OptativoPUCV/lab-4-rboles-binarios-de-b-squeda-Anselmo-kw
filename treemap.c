@@ -113,9 +113,17 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     tree->current = newNodo;
 }
 
-TreeNode * minimum(TreeNode * x){
+TreeNode * minimum(TreeNode * x){//es sub raiz, osea no es la raiz
+    TreeNode * nodo = x;
+    if(nodo->left == NULL)
+        return nodo;
 
-    return NULL;
+    while (nodo->left != NULL)
+    {
+        nodo = nodo->left;
+    }
+    
+    return nodo;
 }
 
 
