@@ -252,7 +252,8 @@ del mapa a partir del puntero TreeNode* current. Recuerde actualizar
 este puntero. */
 Pair * nextTreeMap(TreeMap * tree) {
     TreeNode * actual = tree->current;
-
+    if(actual == NULL) return NULL;
+    
     //Si tiene hijo derecho, retorna el dato minimo del sub arbol
     if(actual->right != NULL) //Tiene hijo derecho
     {   
