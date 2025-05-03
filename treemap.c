@@ -228,9 +228,36 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     return NULL;
 }
 
-
+/* La función Pair* upperBound(TreeMap* tree, void* key) retorna el **Pair** con clave 
+igual a key. En caso de no encontrarlo retorna el primer par asociado a una clave mayor 
+o igual a key. Para implementarla puede realizar una búsqueda normal y usar un puntero 
+a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave *mayor o igual a 
+key*. Finalmente retorne el par del nodo ub\_node. */
 Pair * upperBound(TreeMap * tree, void* key) {
-    return NULL;
+    TreeNode * aux = tree->root;
+    TreeNode * auxCercano = aux;
+
+    while(aux != NULL)
+    {
+        if(aux->pair->key == key)
+            return aux->pair;
+        else{
+            //key < aux, 1 si key es menor (<) que aux
+            if(tree->lower_than(key, aux->pair->key))
+            {
+                if(tree->lower_than(key, auxCercano->pair->key) && tree->lower_than(auxCercano, aux->pair->key))
+                    auxCercano->pair->key = aux->pair->key;
+                aux = aux->left;
+            }
+            else{// key > aux
+                aux = aux->right;
+            }
+        }
+
+    }
+
+
+    return auxCercano->pair;
 }
 
 /* Pair* firstTreeMap(TreeMap* tree) retorna el primer **Pair** del mapa (el menor). */
@@ -267,7 +294,7 @@ Pair * nextTreeMap(TreeMap * tree) {
         return actual->pair;
     }
     else{//Si current no tiene hijo derecho, retorna el primer padre que sea de clave mayor
-        void * key = tree->current->pair->key; //clave del actual
+        void * key = tree->current->pair->key; //clave del actual (void porque la clave en al estructura es de tipo void)
         TreeNode * aux = tree->current->parent; // papa del actual
 
         //SIEMPRE que comparo claves, usar tree->lower_than(clave1, clave2);
