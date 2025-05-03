@@ -267,14 +267,17 @@ Pair * nextTreeMap(TreeMap * tree) {
         return actual->pair;
     }
     else{//Si current no tiene hijo derecho, retorna el primer padre que sea de clave mayor
-        TreeNode * key = tree->current->pair->key; //clave del actual
+        void * key = tree->current->pair->key; //clave del actual
         TreeNode * aux = tree->current->parent; // papa del actual
 
-        while(aux != NULL && aux->pair->key < key){
+        //SIEMPRE que comparo claves, usar tree->lower_than(clave1, clave2);
+        while(aux != NULL && tree->lower_than(aux->pair->key, key)){
             aux = aux->parent;
         }
 
         tree->current = aux;
-        return aux->pair;
+        if(aux == NULL) return NULL;
+        else
+            return aux->pair;
     }
 }
