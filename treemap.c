@@ -269,6 +269,8 @@ Pair * upperBound(TreeMap * tree, void* key) {
 
     }
 
+    if(guardado == NULL)
+        return NULL;
     return guardado->pair;
 }
 
