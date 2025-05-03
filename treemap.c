@@ -236,10 +236,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
 /* Pair* firstTreeMap(TreeMap* tree) retorna el primer **Pair** del mapa (el menor). */
 Pair * firstTreeMap(TreeMap * tree) {
     TreeNode * aux = tree->root;
-    if(aux->left != NULL)
-        return aux;
-    else
-        return NULL;
+    return aux;
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
