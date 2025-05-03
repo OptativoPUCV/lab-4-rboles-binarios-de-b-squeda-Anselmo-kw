@@ -240,8 +240,8 @@ Pair * firstTreeMap(TreeMap * tree) {
 /* Pair* firstTreeMap(TreeMap* tree) retorna el primer **Pair** del mapa (el menor). */
 Pair * nextTreeMap(TreeMap * tree) {
     TreeNode * aux = tree->root;
-    //if(aux->left != NULL)
-        //return aux->left;
-    //else
-    return NULL;
+    if(aux->left == NULL)
+        return NULL;
+    else
+        return aux;
 }
