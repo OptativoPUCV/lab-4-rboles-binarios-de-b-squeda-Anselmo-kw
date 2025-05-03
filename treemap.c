@@ -235,7 +235,7 @@ a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave *mayor o i
 key*. Finalmente retorne el par del nodo ub\_node. */
 Pair * upperBound(TreeMap * tree, void* key) {
     TreeNode * aux = tree->root;
-    TreeNode * auxCercano = aux;
+    TreeNode * guardado = aux;
 
     while(aux != NULL)
     {
@@ -245,12 +245,12 @@ Pair * upperBound(TreeMap * tree, void* key) {
             //key < aux, 1 si key es menor (<) que aux
             if(tree->lower_than(key, aux->pair->key))
             {
-                if(tree->lower_than(aux->pair->key, auxCercano->pair->key) && tree->lower_than(key, auxCercano->pair->key))
-                    auxCercano = aux;
+                if(tree->lower_than(aux->pair->key, guardado->pair->key) && tree->lower_than(key, guardado->pair->key))
+                   guardado = aux;
                 else {
-                    if(tree->lower_than(auxCercano->pair->key, key) 
-                && tree->lower_than(auxCercano->pair->key, aux->pair->key))
-                    auxCercano = aux;
+                    if(tree->lower_than(guardado->pair->key, key) 
+                && tree->lower_than(guardado->pair->key, aux->pair->key))
+                    guardado = aux;
                 }
 
                 aux = aux->left;
@@ -263,7 +263,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
     }
 
 
-    return auxCercano->pair;
+    return guardado->pair;
 }
 
 /* Pair* firstTreeMap(TreeMap* tree) retorna el primer **Pair** del mapa (el menor). */
