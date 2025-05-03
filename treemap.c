@@ -247,6 +247,24 @@ Pair * firstTreeMap(TreeMap * tree) {
     return aux->pair;
 }
 
+/* Pair* nextTreeMap(TreeMap* tree)  retornar el siguiente **Pair** 
+del mapa a partir del puntero TreeNode* current. Recuerde actualizar 
+este puntero. */
 Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+    TreeNode * actual = tree->current;
+
+    //Si tiene hijo derecho, retorna el dato minimo del sub arbol
+    if(actual->right != NULL) //Tiene hijo derecho
+    {   
+        actual = actual->right;
+        while (actual != NULL)
+        {
+            actual = actual->left; //buscamos el más peque
+        }
+
+        tree->current = actual;
+        return actual->pair;
+    }
+    else
+        return NULL;
 }
