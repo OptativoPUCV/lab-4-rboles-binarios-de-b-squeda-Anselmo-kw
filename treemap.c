@@ -36,24 +36,6 @@ TreeNode * createTreeNode(void* key, void * value) {
     return new;
 }
 
-/*typedef struct Pair {
-        void * key;
-        void * value;
-    } Pair;
-
-    struct TreeNode {
-        Pair* pair
-        TreeNode * left;
-        TreeNode * right;
-        TreeNode * parent;
-    };
-
-    struct TreeMap {
-        TreeNode * root;
-        TreeNode * current;
-        int (*lower_than) (void* key1, void* key2);
-    };*/
-
 TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
     TreeMap *new = (TreeMap*) malloc(sizeof(TreeMap));
     if(new == NULL) return NULL;
@@ -62,7 +44,6 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
     new->lower_than = lower_than;
     return new;
 }
-
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     TreeNode * newNodo = createTreeNode(key, value);
@@ -126,7 +107,6 @@ TreeNode * minimum(TreeNode * x){//es sub raiz, osea no es la raiz
     return nodo;
 }
 
-
 void removeNode(TreeMap * tree, TreeNode* node) {
 
     // Nodo sin hijos //
@@ -163,16 +143,8 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     }
 
     // Nodo con dos hijos //
-    //TreeNode * hijoDer = node->right; ok
-    //hijoDer = minimum(node); ok
-
-    /*node->pair->key = hijoDer->pair->key;
-    node->pair->value = hijoDer->pair->value;*/
-
-    
     if(node->left != NULL && node->right != NULL)
     {
-        //TreeNode * hijoDer = minimum(node->right);
         TreeNode * hijoDer = node->right;
         hijoDer = minimum(hijoDer);      
 
@@ -192,7 +164,6 @@ void eraseTreeMap(TreeMap * tree, void* key){
     removeNode(tree, node);
 
 }
-
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
     TreeNode * aux = tree->root; //siempre se empieza por la raiz verdad 
@@ -228,11 +199,6 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     return NULL;
 }
 
-/* La función Pair* upperBound(TreeMap* tree, void* key) retorna el **Pair** con clave 
-igual a key. En caso de no encontrarlo retorna el primer par asociado a una clave mayor 
-o igual a key. Para implementarla puede realizar una búsqueda normal y usar un puntero 
-a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave *mayor o igual a 
-key*. Finalmente retorne el par del nodo ub\_node. */
 Pair * upperBound(TreeMap * tree, void* key) {
     if(tree == NULL || tree->root == NULL) return NULL;
     TreeNode * aux = tree->root;
@@ -261,7 +227,6 @@ Pair * upperBound(TreeMap * tree, void* key) {
     return guardado->pair;
 }
 
-/* Pair* firstTreeMap(TreeMap* tree) retorna el primer **Pair** del mapa (el menor). */
 Pair * firstTreeMap(TreeMap * tree) {
     TreeNode * aux = tree->root;
     if(aux == NULL) return NULL;
@@ -275,9 +240,6 @@ Pair * firstTreeMap(TreeMap * tree) {
     return aux->pair;
 }
 
-/* Pair* nextTreeMap(TreeMap* tree)  retornar el siguiente **Pair** 
-del mapa a partir del puntero TreeNode* current. Recuerde actualizar 
-este puntero. */
 Pair * nextTreeMap(TreeMap * tree) {
     if(tree == NULL || tree->current == NULL) return NULL;
     TreeNode * actual = tree->current;
