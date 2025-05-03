@@ -266,6 +266,15 @@ Pair * nextTreeMap(TreeMap * tree) {
         tree->current = actual;
         return actual->pair;
     }
-    else
-        return NULL;
+    else{//Si current no tiene hijo derecho, retorna el primer padre que sea de clave mayor
+        TreeNode * key = tree->current->pair->key; //clave del actual
+        TreeNode * aux = tree->current->parent; // papa del actual
+
+        while(aux != NULL && aux->pair->key < key){
+            aux = aux->parent;
+        }
+
+        tree->current = aux;
+        return aux->pair;
+    }
 }
