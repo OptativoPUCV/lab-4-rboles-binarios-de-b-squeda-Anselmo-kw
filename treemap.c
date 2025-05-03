@@ -242,6 +242,7 @@ Pair * firstTreeMap(TreeMap * tree) {
         aux = aux->left;
     }
 
+    //Actualizo el current SIEMPRE RECORDARLO
     tree->current = aux;
     return aux->pair;
 }
