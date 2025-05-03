@@ -245,9 +245,10 @@ Pair * upperBound(TreeMap * tree, void* key) {
             //key < aux, 1 si key es menor (<) que aux
             if(tree->lower_than(key, aux->pair->key))
             {
-                if(tree->lower_than(key, auxCercano->pair->key) && tree->lower_than(aux->pair->key, auxCercano->pair->key))
+                if(tree->lower_than(aux->pair->key, auxCercano->pair->key) && tree->lower_than(key, auxCercano->pair->key))
                     auxCercano = aux;
-                else {if(tree->lower_than(auxCercano->pair->key, key) 
+                else {
+                    if(tree->lower_than(auxCercano->pair->key, key) 
                 && tree->lower_than(auxCercano->pair->key, aux->pair->key))
                     auxCercano = aux;
                 }
