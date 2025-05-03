@@ -241,8 +241,8 @@ Pair * firstTreeMap(TreeMap * tree) {
     else{
         if(aux->left == NULL) //El si el izquierdo es NULL, el derecho ta libre
             return aux->right;
-        else
-            return aux->left;
+        //else
+            //return aux->left;
     }
 }
 
