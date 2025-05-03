@@ -250,6 +250,8 @@ Pair * upperBound(TreeMap * tree, void* key) {
                 aux = aux->left;
             }
             else{// key > aux
+                if(tree->lower_than(key, auxCercano->pair->key) && tree->lower_than(auxCercano, aux->pair->key))
+                    auxCercano->pair->key = aux->pair->key;
                 aux = aux->right;
             }
         }
