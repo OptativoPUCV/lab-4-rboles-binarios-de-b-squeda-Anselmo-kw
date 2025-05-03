@@ -234,7 +234,7 @@ o igual a key. Para implementarla puede realizar una búsqueda normal y usar un 
 a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave *mayor o igual a 
 key*. Finalmente retorne el par del nodo ub\_node. */
 Pair * upperBound(TreeMap * tree, void* key) {
-    if(tree == NULL || tree->root == NULL ) return NULL;
+    if(tree == NULL || tree->root == NULL) return NULL;
     TreeNode * aux = tree->root;
     TreeNode * guardado = NULL; //parte en nulo porque no sabemos si vamos a tener candidatos o no
 
@@ -244,19 +244,6 @@ Pair * upperBound(TreeMap * tree, void* key) {
             return aux->pair;
         else{
             //key < aux, 1 si key es menor (<) que aux
-            /* taba buena mi logica u_u
-            if(tree->lower_than(key, aux->pair->key))
-            {
-                if(tree->lower_than(aux->pair->key, guardado->pair->key) && tree->lower_than(key, guardado->pair->key))
-                   guardado = aux;
-                else {
-                    if(tree->lower_than(guardado->pair->key, key) 
-                && tree->lower_than(guardado->pair->key, aux->pair->key))
-                    guardado = aux;
-                }
-
-                aux = aux->left;
-            }*/
             if (tree->lower_than(key, aux->pair->key)) {
                 // key < aux->key  == posible sucesor
                 guardado = aux;
