@@ -258,7 +258,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     if(actual->right != NULL) //Tiene hijo derecho
     {   
         actual = actual->right;
-        while (actual != NULL)
+        while (actual->left != NULL)
         {
             actual = actual->left; //buscamos el más peque
         }
