@@ -236,9 +236,7 @@ key*. Finalmente retorne el par del nodo ub\_node. */
 Pair * upperBound(TreeMap * tree, void* key) {
     if(tree == NULL || tree->root == NULL ) return NULL;
     TreeNode * aux = tree->root;
-    if(aux->right == NULL && aux->left == NULL) return NULL;
-    TreeNode * guardado = aux;
-
+    TreeNode * guardado = NULL;
 
     while(aux != NULL)
     {
